@@ -7,7 +7,7 @@
     tools:context="edu.duke.quizmaster.QuizActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/quizProblem"
         android:layout_width="228dp"
         android:layout_height="41dp"
         android:layout_marginEnd="15dp"
@@ -20,41 +20,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RadioButton
-        android:id="@+id/optionD"
-        android:layout_width="188dp"
-        android:layout_height="35dp"
-        android:text="RadioButton"
-        tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="356dp" />
-
-    <RadioButton
-        android:id="@+id/optionC"
-        android:layout_width="188dp"
-        android:layout_height="28dp"
-        android:text="RadioButton"
-        tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="300dp" />
-
-    <RadioButton
-        android:id="@+id/optionB"
-        android:layout_width="187dp"
-        android:layout_height="wrap_content"
-        android:text="RadioButton"
-        tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="239dp" />
-
-    <RadioButton
-        android:id="@+id/optionA"
-        android:layout_width="188dp"
-        android:layout_height="30dp"
-        android:text="RadioButton"
-        tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="178dp" />
-
     <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="129dp"
+        android:layout_marginBottom="200dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/optionD"
+            android:layout_width="188dp"
+            android:layout_height="35dp"
+            android:text="RadioButton"
+            tools:layout_editor_absoluteX="111dp"
+            tools:layout_editor_absoluteY="356dp" />
+
+        <RadioButton
+            android:id="@+id/optionC"
+            android:layout_width="188dp"
+            android:layout_height="28dp"
+            android:text="RadioButton"
+            tools:layout_editor_absoluteX="111dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/optionB"
+            android:layout_width="187dp"
+            android:layout_height="wrap_content"
+            android:text="RadioButton"
+            tools:layout_editor_absoluteX="111dp"
+            tools:layout_editor_absoluteY="239dp" />
+
+        <RadioButton
+            android:id="@+id/optionA"
+            android:layout_width="188dp"
+            android:layout_height="30dp"
+            android:text="RadioButton"
+            tools:layout_editor_absoluteX="111dp"
+            tools:layout_editor_absoluteY="178dp" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="132dp" />
+        android:text="SUBMIT"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="350dp" />
 </android.support.constraint.ConstraintLayout>
