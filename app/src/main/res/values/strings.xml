@@ -1,11 +1,3 @@
 <resources>
     <string name="app_name">QuizMaster</string>
-    <string-array name="quiz1">
-        <item>Where does the brand Alfa Romeo originate from?</item>
-        <item>United States</item>
-        <item>United Kingdom</item>
-        <item>Spain</item>
-        <item>France</item>
-        <item>France</item>
-    </string-array>
 </resources>

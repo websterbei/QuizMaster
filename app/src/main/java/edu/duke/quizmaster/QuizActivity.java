@@ -37,7 +37,6 @@ public class QuizActivity extends AppCompatActivity {
                 RadioButton selectedButton = (RadioButton) findViewById(selectedId);
                 String selectedAnswer = selectedButton.getText().toString();
                 int score = selectedAnswer.equals(quizProblemArray[5]) ? 1:0;
-                
             }
         });
     }
