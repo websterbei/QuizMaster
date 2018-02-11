@@ -16,5 +16,6 @@ public class JSONQuizFactory {
     public static Quiz getQuiz(final Context activityContext, String resourceName) {
         String quizString = getQuizString(activityContext, resourceName);
         Quiz quiz = JSONQuizParser.parse(quizString);
+        return quiz;
     }
 }

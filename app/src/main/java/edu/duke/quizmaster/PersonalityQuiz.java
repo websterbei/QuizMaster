@@ -16,7 +16,7 @@ public class PersonalityQuiz implements Quiz {
         this(title, questions, false);
     }
 
-    public LinearQuiz(String title, Question[] questions, boolean shuffle) {
+    public PersonalityQuiz(String title, Question[] questions, boolean shuffle) {
         this.mTitle = title;
         this.mQuestions = new ArrayList<>(Arrays.asList(questions));
         if(shuffle) {
