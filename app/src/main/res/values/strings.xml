@@ -3,4 +3,7 @@
     <string name="lq1">
         {\"title\": \"First Linear Quiz\", \"type\": \"linear quiz\", \"questions\": [{\"query\": \"What is the answer to 1+1?\", \"answers\": [{\"answer\": 2, \"score\": 1}, {\"answer\": 3, \"score\": 0}, {\"answer\": 4, \"score\": 0}, {\"answer\": 5, \"score\": 0}]}, {\"query\": \"What is the answer to 2+2?\", \"answers\": [{\"answer\": 2, \"score\": 0}, {\"answer\": 3, \"score\": 0}, {\"answer\": 4, \"score\": 1}, {\"answer\": 5, \"score\": 1}]}]}
     </string>
+    <string name="lq2">
+        {\"title\": \"First Linear Quiz\", \"type\": \"linear quiz\", \"questions\": [{\"query\": \"What is the answer to 1+1?\", \"answers\": [{\"answer\": 2, \"score\": 1}, {\"answer\": 3, \"score\": 0}, {\"answer\": 4, \"score\": 0}, {\"answer\": 5, \"score\": 0}]}, {\"query\": \"What is the answer to 2+2?\", \"answers\": [{\"answer\": 2, \"score\": 0}, {\"answer\": 3, \"score\": 0}, {\"answer\": 4, \"score\": 1}, {\"answer\": 5, \"score\": 0}]}, {\"query\": \"How spicy is spicy?\", \"answers\": [{\"answer\": \"very spicy\", \"score\": 0}, {\"answer\": \"somewhat spicy\", \"score\": 1}, {\"answer\": \"little spicy\", \"score\": 0}, {\"answer\": \"not spicy at all\", \"score\": 0}]}]}
+    </string>
 </resources>

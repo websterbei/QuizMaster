@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/quiz_problem"
+        android:id="@+id/quiz_query"
         android:layout_width="match_parent"
         android:layout_height="487dp"
         android:layout_marginLeft="50dp"

@@ -11,6 +11,7 @@ import java.util.Collections;
 public class PersonalityQuiz implements Quiz {
     private String mTitle;
     private ArrayList<Question> mQuestions;
+    private ArrayList<String> mAnswers;
 
     public PersonalityQuiz(String title, Question[] questions) {
         this(title, questions, false);
@@ -21,6 +22,10 @@ public class PersonalityQuiz implements Quiz {
         this.mQuestions = new ArrayList<>(Arrays.asList(questions));
         if(shuffle) {
             Collections.shuffle(mQuestions);
+        }
+        this.mAnswers = new ArrayList<>();
+        for(int i=0; i<this.mQuestions.size(); i++) {
+            mAnswers.add("Default Answer");
         }
     }
 
@@ -40,5 +45,24 @@ public class PersonalityQuiz implements Quiz {
             return mQuestions.get(index);
         }
         throw new IndexOutOfBoundsException("Bad Index" + index);
+    }
+
+    @Override
+    public void setAnswer(int index, String answer) {
+        this.mAnswers.set(index, answer);
+    }
+
+    @Override
+    public int computeScore() {
+        int playerScore = 0;
+        for(int i=0; i<this.mQuestions.size(); i++) {
+            playerScore += this.mQuestions.get(i).getScore(this.mAnswers.get(i));
+        }
+        return playerScore;
+    }
+
+    @Override
+    public int getTotalScore() {
+        return this.mQuestions.size();
     }
 }

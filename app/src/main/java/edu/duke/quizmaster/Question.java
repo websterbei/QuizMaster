@@ -35,4 +35,12 @@ public class Question {
     public int getScore(String myAnswer) {
         return mScoreMap.get(myAnswer);
     }
+
+    public String getQuery() {
+        return this.mQuery;
+    }
+
+    public Iterable<String> getOptions() {
+        return this.mScoreMap.keySet();
+    }
 }
