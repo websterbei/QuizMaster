@@ -7,6 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by Webster on 2/11/18.
  */
@@ -19,25 +22,21 @@ public class JSONQuizParser {
             String title = quizJSON.getString("title");
             String type = quizJSON.getString("type");
             JSONArray questionsArray = quizJSON.getJSONArray("questions");
-            Question[] questions = new Question[questionsArray.length()];
-            for(int i=0; i<questionsArray.length(); i++) {
-                JSONObject current = questionsArray.getJSONObject(i);
-                String query = current.getString("query");
-                JSONArray answersArray = current.getJSONArray("answers");
-                String[] answers = new String[answersArray.length()];
-                int[] scores = new int[answersArray.length()];
-                for(int j=0; j<answersArray.length(); j++) {
-                    JSONObject answer = answersArray.getJSONObject(j);
-                    answers[j] = answer.getString("answer");
-                    scores[j] = answer.getInt("score");
-                }
-                questions[i] = new Question(query, answers, scores);
-            }
+
             switch(type) {
                 case "linear quiz":
-                    return new LinearQuiz(title, questions);
+                    return new LinearQuiz(title, parseLinearQuestions(questionsArray));
                 case "personality quiz":
-                    return new PersonalityQuiz(title, questions);
+                    JSONArray interpretation = quizJSON.getJSONArray("interpretation");
+                    ArrayList<ArrayList<String>> interps = new ArrayList<>();
+                    for(int i=0; i<interpretation.length(); i++) {
+                        JSONArray interp = interpretation.optJSONArray(i);
+                        ArrayList<String> entry = new ArrayList<>();
+                        entry.add(interp.optString(0));
+                        entry.add(interp.optString(1));
+                        interps.add(entry);
+                    }
+                    return new PersonalityQuiz(title, parsePersonalityQuestions(questionsArray), interps);
                 default:
                     throw new JSONException("No matching quiz type");
             }
@@ -46,5 +45,46 @@ public class JSONQuizParser {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private static ArrayList<Question> parseLinearQuestions(JSONArray questionsArray) throws JSONException {
+        ArrayList<Question> questions = new ArrayList<>();
+        for(int i=0; i<questionsArray.length(); i++) {
+            JSONObject current = questionsArray.getJSONObject(i);
+            String query = current.getString("query");
+            JSONArray answersArray = current.getJSONArray("answers");
+            ArrayList<String> answers = new ArrayList<>();
+            ArrayList<Integer> scores = new ArrayList<>();
+            for(int j=0; j<answersArray.length(); j++) {
+                JSONObject answer = answersArray.getJSONObject(j);
+                answers.add(answer.getString("answer"));
+                scores.add(answer.getInt("score"));
+            }
+            questions.add(new Question(query, answers, scores);
+        }
+        return questions;
+    }
+
+    private static ArrayList<Question> parsePersonalityQuestions(JSONArray questionsArray) throws JSONException {
+        ArrayList<Question> questions = new ArrayList<>();
+        for(int i=0; i<questionsArray.length(); i++) {
+            JSONObject current = questionsArray.getJSONObject(i);
+            String query = current.getString("query");
+            JSONArray answersArray = current.getJSONArray("answers");
+            ArrayList<String> answers = new ArrayList<>();
+            ArrayList<ArrayList<Integer>> scores = new ArrayList<>();
+            for(int j=0; j<answersArray.length(); j++) {
+                JSONObject answer = answersArray.getJSONObject(j);
+                answers.add(answer.getString("answer"));
+                JSONArray score = answer.getJSONArray("score");
+                ArrayList<Integer> curAnswerScore = new ArrayList<>();
+                for(int k=0; k<score.length(); k++) {
+                    curAnswerScore.add(score.optInt(k));
+                }
+                scores.add(curAnswerScore);
+            }
+            questions.add(new Question(query, answers, scores);
+        }
+        return questions;
     }
 }

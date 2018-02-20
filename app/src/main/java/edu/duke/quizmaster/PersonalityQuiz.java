@@ -12,14 +12,16 @@ public class PersonalityQuiz implements Quiz {
     private String mTitle;
     private ArrayList<Question> mQuestions;
     private ArrayList<String> mAnswers;
+    private ArrayList<ArrayList<String>> mInterpretations;
 
-    public PersonalityQuiz(String title, Question[] questions) {
-        this(title, questions, false);
+    public PersonalityQuiz(String title, ArrayList<Question> questions, ArrayList<ArrayList<String>> interpretations) {
+        this(title, questions, interpretations, false);
     }
 
-    public PersonalityQuiz(String title, Question[] questions, boolean shuffle) {
+    public PersonalityQuiz(String title, ArrayList<Question> questions, ArrayList<ArrayList<String>> interpretations, boolean shuffle) {
         this.mTitle = title;
-        this.mQuestions = new ArrayList<>(Arrays.asList(questions));
+        this.mQuestions = questions;
+        this.mInterpretations = interpretations;
         if(shuffle) {
             Collections.shuffle(mQuestions);
         }

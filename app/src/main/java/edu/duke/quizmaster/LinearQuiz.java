@@ -13,15 +13,15 @@ public class LinearQuiz implements Quiz {
     private ArrayList<Question> mQuestions;
     private ArrayList<String> mAnswers;
 
-    public LinearQuiz(String title, Question[] questions) {
+    public LinearQuiz(String title, ArrayList<Question> questions) {
         this(title, questions, false);
     }
 
-    public LinearQuiz(String title, Question[] questions, boolean shuffle) {
+    public LinearQuiz(String title, ArrayList<Question> questions, boolean shuffle) {
         this.mTitle = title;
-        this.mQuestions = new ArrayList<>(Arrays.asList(questions));
+        this.mQuestions = questions;
         if(shuffle) {
-            Collections.shuffle(mQuestions);
+            Collections.shuffle(this.mQuestions);
         }
         this.mAnswers = new ArrayList<>();
         for(int i=0; i<this.mQuestions.size(); i++) {
