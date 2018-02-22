@@ -10,15 +10,15 @@ import java.util.Collections;
 
 public class PersonalityQuiz implements Quiz {
     private String mTitle;
-    private ArrayList<Question> mQuestions;
+    private ArrayList<PersonalityQuestion> mQuestions;
     private ArrayList<String> mAnswers;
     private ArrayList<ArrayList<String>> mInterpretations;
 
-    public PersonalityQuiz(String title, ArrayList<Question> questions, ArrayList<ArrayList<String>> interpretations) {
+    public PersonalityQuiz(String title, ArrayList<PersonalityQuestion> questions, ArrayList<ArrayList<String>> interpretations) {
         this(title, questions, interpretations, false);
     }
 
-    public PersonalityQuiz(String title, ArrayList<Question> questions, ArrayList<ArrayList<String>> interpretations, boolean shuffle) {
+    public PersonalityQuiz(String title, ArrayList<PersonalityQuestion> questions, ArrayList<ArrayList<String>> interpretations, boolean shuffle) {
         this.mTitle = title;
         this.mQuestions = questions;
         this.mInterpretations = interpretations;
@@ -54,11 +54,14 @@ public class PersonalityQuiz implements Quiz {
         this.mAnswers.set(index, answer);
     }
 
-    @Override
-    public int computeScore() {
-        int playerScore = 0;
-        for(int i=0; i<this.mQuestions.size(); i++) {
-            playerScore += this.mQuestions.get(i).getScore(this.mAnswers.get(i));
+    public ArrayList<Integer> computeScore() {
+        ArrayList<Integer> playerScore = new ArrayList<Integer>();
+        playerScore.addAll(this.mQuestions.get(0).getScore(this.mAnswers.get(0)));
+        for(int i=1; i<this.mQuestions.size(); i++) {
+            ArrayList<Integer> ans = this.mQuestions.get(0).getScore(this.mAnswers.get(0));
+            for(int j=0; j<ans.size(); j++) {
+                playerScore.add(j, playerScore.get(j) + ans.get(j));
+            }
         }
         return playerScore;
     }

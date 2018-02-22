@@ -10,14 +10,14 @@ import java.util.Collections;
 
 public class LinearQuiz implements Quiz {
     private String mTitle;
-    private ArrayList<Question> mQuestions;
+    private ArrayList<LinearQuestion> mQuestions;
     private ArrayList<String> mAnswers;
 
-    public LinearQuiz(String title, ArrayList<Question> questions) {
+    public LinearQuiz(String title, ArrayList<LinearQuestion> questions) {
         this(title, questions, false);
     }
 
-    public LinearQuiz(String title, ArrayList<Question> questions, boolean shuffle) {
+    public LinearQuiz(String title, ArrayList<LinearQuestion> questions, boolean shuffle) {
         this.mTitle = title;
         this.mQuestions = questions;
         if(shuffle) {
@@ -52,7 +52,6 @@ public class LinearQuiz implements Quiz {
         this.mAnswers.set(index, answer);
     }
 
-    @Override
     public int computeScore() {
         int playerScore = 0;
         for(int i=0; i<this.mQuestions.size(); i++) {

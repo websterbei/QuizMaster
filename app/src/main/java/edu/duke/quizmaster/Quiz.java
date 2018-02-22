@@ -9,6 +9,5 @@ interface Quiz {
     int getSize();
     Question getQuestion(int index);
     void setAnswer(int index, String answer);
-    int computeScore();
     int getTotalScore();
 }
