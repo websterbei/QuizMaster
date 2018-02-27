@@ -96,21 +96,20 @@ public class QuizActivity extends AppCompatActivity {
             }
             else if(this.mQuiz instanceof PersonalityQuiz) {
                 JSONObject scoreObject = this.mQuiz.computeScore();
-                ArrayList<Integer> playerScore = new ArrayList<>();
+                ArrayList<Integer> playerScore = null;
                 try {
-                    JSONArray scoreArray = scoreObject.getJSONArray("player_score");
-                    for(int i=0; i<scoreArray.length(); i++) {
-                        playerScore.add(scoreArray.getInt(i));
-                    }
+                    playerScore = (ArrayList<Integer>) scoreObject.get("player_score");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
                 PersonalityQuiz mPersonalityQuiz = (PersonalityQuiz) this.mQuiz;
                 ArrayList<ArrayList<String>> interpretations = mPersonalityQuiz.getInterpretations();
-
+                System.out.println(interpretations.size());
+                System.out.println(playerScore.size());
+                System.out.println(scoreObject);
                 Intent intent = new Intent(getApplicationContext(), PersonalityQuizResultActivity.class);
-                intent.putExtra("interpretation", interpretations);
+                intent.putExtra("interpretations", interpretations);
                 intent.putExtra("player_score", playerScore);
                 getApplicationContext().startActivity(intent);
             }

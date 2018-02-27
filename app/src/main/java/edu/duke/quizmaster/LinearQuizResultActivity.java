@@ -9,7 +9,7 @@ public class LinearQuizResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_result);
+        setContentView(R.layout.activity_linear_quiz_result);
         TextView result = findViewById(R.id.quiz_result_text_view);
         int totalScore = getIntent().getExtras().getInt("total_score");
         int playerScore = getIntent().getExtras().getInt("player_score");
