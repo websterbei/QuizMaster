@@ -7,9 +7,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class QuizActivity extends AppCompatActivity {
@@ -87,15 +89,30 @@ public class QuizActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Intent intent = new Intent(getApplicationContext(), QuizResultActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LinearQuizResultActivity.class);
                 intent.putExtra("total_score", totalScore);
                 intent.putExtra("player_score", playerScore);
                 getApplicationContext().startActivity(intent);
             }
             else if(this.mQuiz instanceof PersonalityQuiz) {
                 JSONObject scoreObject = this.mQuiz.computeScore();
-                System.out.println("Printing Score");
-                System.out.println(scoreObject);
+                ArrayList<Integer> playerScore = new ArrayList<>();
+                try {
+                    JSONArray scoreArray = scoreObject.getJSONArray("player_score");
+                    for(int i=0; i<scoreArray.length(); i++) {
+                        playerScore.add(scoreArray.getInt(i));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                PersonalityQuiz mPersonalityQuiz = (PersonalityQuiz) this.mQuiz;
+                ArrayList<ArrayList<String>> interpretations = mPersonalityQuiz.getInterpretations();
+
+                Intent intent = new Intent(getApplicationContext(), PersonalityQuizResultActivity.class);
+                intent.putExtra("interpretation", interpretations);
+                intent.putExtra("player_score", playerScore);
+                getApplicationContext().startActivity(intent);
             }
         }
     }
