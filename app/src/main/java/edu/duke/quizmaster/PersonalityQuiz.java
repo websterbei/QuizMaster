@@ -57,15 +57,15 @@ public class PersonalityQuiz implements Quiz {
         this.mAnswers.set(index, answer);
     }
 
-    @Override 
+    @Override
     public JSONObject computeScore() {
         JSONObject scoreObject = new JSONObject();
         ArrayList<Integer> playerScore = new ArrayList<Integer>();
         playerScore.addAll(this.mQuestions.get(0).getScore(this.mAnswers.get(0)));
         for(int i=1; i<this.mQuestions.size(); i++) {
-            ArrayList<Integer> ans = this.mQuestions.get(0).getScore(this.mAnswers.get(0));
-            for(int j=0; j<ans.size(); j++) {
-                playerScore.add(j, playerScore.get(j) + ans.get(j));
+            ArrayList<Integer> questionScore = this.mQuestions.get(i).getScore(this.mAnswers.get(i));
+            for(int j=0; j<questionScore.size(); j++) {
+                playerScore.set(j, playerScore.get(j) + questionScore.get(j));
             }
         }
         try {
@@ -74,6 +74,10 @@ public class PersonalityQuiz implements Quiz {
             e.printStackTrace();
         }
         return scoreObject;
+    }
+
+    public ArrayList<ArrayList<String>> getInterpretations() {
+        return this.mInterpretations;
     }
 
     @Override
