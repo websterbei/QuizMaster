@@ -35,9 +35,9 @@ public class PersonalityQuizResultActivity extends AppCompatActivity {
         D_left.setText(interpretations.get(3).get(0));
         D_right.setText(interpretations.get(3).get(1));
         ArrayList<Integer> playerScore = (ArrayList<Integer>) getIntent().getSerializableExtra("player_score");
-        A_score.setText(Integer.toString(playerScore.get(0)));
-        B_score.setText(Integer.toString(playerScore.get(1)));
-        C_score.setText(Integer.toString(playerScore.get(2)));
-        D_score.setText(Integer.toString(playerScore.get(3)));
+        A_score.setText(String.format(String.valueOf(playerScore.get(0))));
+        B_score.setText(String.format(String.valueOf(playerScore.get(1))));
+        C_score.setText(String.format(String.valueOf(playerScore.get(2))));
+        D_score.setText(String.format(String.valueOf(playerScore.get(3))));
     }
 }

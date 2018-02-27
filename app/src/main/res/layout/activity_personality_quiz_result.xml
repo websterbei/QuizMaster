@@ -10,96 +10,108 @@
         android:id="@+id/text_view_A_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="104dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="104dp" />
+        app:layout_constraintEnd_toStartOf="@+id/text_view_A_right"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_view_B_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="42dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="165dp" />
+        app:layout_constraintEnd_toStartOf="@+id/text_view_B_right"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_A_score" />
 
     <TextView
         android:id="@+id/text_view_B_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="251dp"
-        tools:layout_editor_absoluteY="165dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_B_score"
+        app:layout_constraintStart_toStartOf="@+id/text_view_A_right" />
 
     <TextView
         android:id="@+id/text_view_C_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="251dp"
-        tools:layout_editor_absoluteY="235dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_C_score"
+        app:layout_constraintStart_toStartOf="@+id/text_view_B_right" />
 
     <TextView
         android:id="@+id/text_view_D_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="251dp"
-        tools:layout_editor_absoluteY="306dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_D_score"
+        app:layout_constraintStart_toStartOf="@+id/text_view_C_right" />
 
     <TextView
         android:id="@+id/text_view_A_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="75dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="251dp"
-        tools:layout_editor_absoluteY="104dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_A_score"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/text_view_B_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="63dp"
-        tools:layout_editor_absoluteY="165dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_B_score"
+        app:layout_constraintStart_toStartOf="@+id/text_view_A_left" />
 
     <TextView
         android:id="@+id/text_view_C_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="63dp"
-        tools:layout_editor_absoluteY="235dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_C_score"
+        app:layout_constraintEnd_toEndOf="@+id/text_view_D_left"
+        app:layout_constraintStart_toStartOf="@+id/text_view_D_left" />
 
     <TextView
         android:id="@+id/text_view_D_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="63dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="63dp"
-        tools:layout_editor_absoluteY="306dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_D_score"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/text_view_A_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="63dp"
-        tools:layout_editor_absoluteY="104dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_A_score"
+        app:layout_constraintEnd_toEndOf="@+id/text_view_C_left"
+        app:layout_constraintStart_toStartOf="@+id/text_view_C_left" />
 
     <TextView
         android:id="@+id/text_view_C_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="51dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="235dp" />
+        app:layout_constraintEnd_toStartOf="@+id/text_view_C_right"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_B_score" />
 
     <TextView
         android:id="@+id/text_view_D_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="52dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="306dp" />
+        app:layout_constraintEnd_toStartOf="@+id/text_view_D_right"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_C_score" />
 
 </android.support.constraint.ConstraintLayout>
