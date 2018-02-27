@@ -13,8 +13,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button startQuizButton = findViewById(R.id.startQuizButton);
-        startQuizButton.setOnClickListener(new View.OnClickListener() {
+        Button startQuizButtonPersonality = findViewById(R.id.startQuizButtonPersonality);
+        startQuizButtonPersonality.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openQuiz(view.getContext());
@@ -23,6 +23,19 @@ public class MainActivity extends AppCompatActivity {
             private void openQuiz(Context mContext) {
                 Intent intent = new Intent(mContext, QuizActivity.class);
                 intent.putExtra("quizId", "pq1");
+                mContext.startActivity(intent);
+            }
+        });
+        Button startQuizButtonLinear = findViewById(R.id.startQuizButtonLinear);
+        startQuizButtonLinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openQuiz(view.getContext());
+            }
+
+            private void openQuiz(Context mContext) {
+                Intent intent = new Intent(mContext, QuizActivity.class);
+                intent.putExtra("quizId", "lq1");
                 mContext.startActivity(intent);
             }
         });

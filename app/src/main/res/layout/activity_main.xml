@@ -8,10 +8,22 @@
     tools:context="edu.duke.quizmaster.MainActivity">
 
     <Button
-        android:id="@+id/startQuizButton"
+        android:id="@+id/startQuizButtonPersonality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="164dp" />
+        android:layout_marginBottom="220dp"
+        android:text="Start Personality Quiz"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/startQuizButtonLinear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="22dp"
+        android:text="Start Linear Quiz"
+        app:layout_constraintBottom_toTopOf="@+id/startQuizButtonPersonality"
+        app:layout_constraintStart_toStartOf="@+id/startQuizButtonPersonality" />
 </android.support.constraint.ConstraintLayout>
