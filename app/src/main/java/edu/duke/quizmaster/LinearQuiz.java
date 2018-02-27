@@ -1,5 +1,8 @@
 package edu.duke.quizmaster;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,12 +55,18 @@ public class LinearQuiz implements Quiz {
         this.mAnswers.set(index, answer);
     }
 
-    public int computeScore() {
+    public JSONObject computeScore() {
         int playerScore = 0;
         for(int i=0; i<this.mQuestions.size(); i++) {
             playerScore += this.mQuestions.get(i).getScore(this.mAnswers.get(i));
         }
-        return playerScore;
+        JSONObject scoreObject = new JSONObject();
+        try {
+            scoreObject.put("player_score", playerScore);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return scoreObject;
     }
 
     @Override

@@ -7,6 +7,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import java.util.Iterator;
 
 public class QuizActivity extends AppCompatActivity {
@@ -75,8 +77,10 @@ public class QuizActivity extends AppCompatActivity {
             this.mCurrentQuestionIndex++;
             displayQuestion(this.mCurrentQuestionIndex);
         } else {
-            int playerScore = this.mQuiz.computeScore();
-            int totalScore = this.mQuiz.getTotalScore();
+            if(this.mQuiz instanceof LinearQuiz) {
+                int totalScore = this.mQuiz.getTotalScore();
+                JSONObject scoreObject = this.mQuiz.computeScore();
+            }
             Intent intent = new Intent(getApplicationContext(), QuizResultActivity.class);
             intent.putExtra("total_score", totalScore);
             intent.putExtra("player_score", playerScore);

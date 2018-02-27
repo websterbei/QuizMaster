@@ -47,8 +47,8 @@ public class JSONQuizParser {
         return null;
     }
 
-    private static ArrayList<Question> parseLinearQuestions(JSONArray questionsArray) throws JSONException {
-        ArrayList<Question> questions = new ArrayList<>();
+    private static ArrayList<LinearQuestion> parseLinearQuestions(JSONArray questionsArray) throws JSONException {
+        ArrayList<LinearQuestion> questions = new ArrayList<>();
         for(int i=0; i<questionsArray.length(); i++) {
             JSONObject current = questionsArray.getJSONObject(i);
             String query = current.getString("query");
@@ -60,13 +60,13 @@ public class JSONQuizParser {
                 answers.add(answer.getString("answer"));
                 scores.add(answer.getInt("score"));
             }
-            questions.add(new Question(query, answers, scores);
+            questions.add(new LinearQuestion(query, answers, scores);
         }
         return questions;
     }
 
-    private static ArrayList<Question> parsePersonalityQuestions(JSONArray questionsArray) throws JSONException {
-        ArrayList<Question> questions = new ArrayList<>();
+    private static ArrayList<PersonalityQuestion> parsePersonalityQuestions(JSONArray questionsArray) throws JSONException {
+        ArrayList<PersonalityQuestion> questions = new ArrayList<>();
         for(int i=0; i<questionsArray.length(); i++) {
             JSONObject current = questionsArray.getJSONObject(i);
             String query = current.getString("query");
@@ -83,7 +83,7 @@ public class JSONQuizParser {
                 }
                 scores.add(curAnswerScore);
             }
-            questions.add(new Question(query, answers, scores);
+            questions.add(new PersonalityQuestion(query, answers, scores);
         }
         return questions;
     }
