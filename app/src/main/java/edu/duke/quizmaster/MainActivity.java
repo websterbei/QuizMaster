@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
             private void openQuiz(Context mContext) {
                 Intent intent = new Intent(mContext, QuizActivity.class);
-                intent.putExtra("quizId", "lq2");
+                intent.putExtra("quizId", "pq1");
                 mContext.startActivity(intent);
             }
         });

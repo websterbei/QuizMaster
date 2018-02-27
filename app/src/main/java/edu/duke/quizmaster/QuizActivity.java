@@ -7,6 +7,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Iterator;
@@ -80,11 +81,22 @@ public class QuizActivity extends AppCompatActivity {
             if(this.mQuiz instanceof LinearQuiz) {
                 int totalScore = this.mQuiz.getTotalScore();
                 JSONObject scoreObject = this.mQuiz.computeScore();
+                int playerScore = 0;
+                try {
+                    playerScore = scoreObject.getInt("player_score");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Intent intent = new Intent(getApplicationContext(), QuizResultActivity.class);
+                intent.putExtra("total_score", totalScore);
+                intent.putExtra("player_score", playerScore);
+                getApplicationContext().startActivity(intent);
             }
-            Intent intent = new Intent(getApplicationContext(), QuizResultActivity.class);
-            intent.putExtra("total_score", totalScore);
-            intent.putExtra("player_score", playerScore);
-            getApplicationContext().startActivity(intent);
+            else if(this.mQuiz instanceof PersonalityQuiz) {
+                JSONObject scoreObject = this.mQuiz.computeScore();
+                System.out.println("Printing Score");
+                System.out.println(scoreObject);
+            }
         }
     }
 

@@ -60,7 +60,7 @@ public class JSONQuizParser {
                 answers.add(answer.getString("answer"));
                 scores.add(answer.getInt("score"));
             }
-            questions.add(new LinearQuestion(query, answers, scores);
+            questions.add(new LinearQuestion(query, answers, scores));
         }
         return questions;
     }
@@ -83,7 +83,7 @@ public class JSONQuizParser {
                 }
                 scores.add(curAnswerScore);
             }
-            questions.add(new PersonalityQuestion(query, answers, scores);
+            questions.add(new PersonalityQuestion(query, answers, scores));
         }
         return questions;
     }
