@@ -1,8 +1,10 @@
 package edu.duke.quizmaster;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -80,13 +82,32 @@ public class LinearQuiz implements Quiz {
     public JSONObject getState() {
         JSONObject state = new JSONObject();
         try {
-            state.put("user_answers", this.mAnswers);
+            JSONArray answers = new JSONArray(this.mAnswers);
+            System.out.println(answers);
+            state.put("user_answers", answers);
             state.put("complete", this.mNumAnswered==this.mAnswers.size() ? true : false);
-            state.put("current_index", this.mNumAnswered);
+            state.put("num_answered", this.mNumAnswered);
             return state;
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return state;
+    }
+
+    @Override
+    public int resume(JSONObject state) {
+        try {
+            this.mNumAnswered = state.getInt("num_answered");
+            System.out.println(state.get("user_answers"));
+            JSONArray answers = state.getJSONArray("user_answers");
+            for(int i=0; i<answers.length(); i++) {
+                this.mAnswers.set(i, answers.getString(i));
+            }
+            //for(String answer : this.mAnswers) System.out.println(answer);
+            return this.mNumAnswered;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

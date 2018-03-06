@@ -1,5 +1,6 @@
 package edu.duke.quizmaster;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -86,5 +87,10 @@ public class PersonalityQuizResultActivity extends AppCompatActivity {
             D_score.setTypeface(boldTypeface);
             D_score.setTextColor(Color.BLUE);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        navigateUpTo(new Intent(getBaseContext(), MainActivity.class));
     }
 }

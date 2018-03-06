@@ -13,8 +13,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button clearStateButton = findViewById(R.id.clear_state);
+        clearStateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getApplicationContext().deleteFile("state.json");
+            }
+        });
+
         Button startQuizButtonPersonality = findViewById(R.id.startQuizButtonPersonality);
-        System.out.println(StateManager.isComplete(getApplicationContext(), "lq1"));
         startQuizButtonPersonality.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -27,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 mContext.startActivity(intent);
             }
         });
+
         Button startQuizButtonLinear = findViewById(R.id.startQuizButtonLinear);
         startQuizButtonLinear.setOnClickListener(new View.OnClickListener() {
             @Override

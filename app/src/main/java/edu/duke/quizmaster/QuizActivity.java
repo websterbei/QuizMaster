@@ -28,6 +28,10 @@ public class QuizActivity extends AppCompatActivity {
         this.mQuizId = getIntent().getExtras().getString("quizId");
         this.mQuiz = QuizGenerator.getQuizById(getApplicationContext(), this.mQuizId);
         this.mQuizSize = this.mQuiz.getSize();
+        JSONObject state = StateManager.getState(getApplicationContext(), this.mQuizId);
+        if(state!=null) {
+            this.mCurrentQuestionIndex = this.mQuiz.resume(state);
+        }
     }
 
     @Override
@@ -35,7 +39,7 @@ public class QuizActivity extends AppCompatActivity {
         System.out.println("Start");
         super.onStart();
         this.setRadioGroupEventListener("quiz_radio_group");
-        this.mCurrentQuestionIndex = 0;
+        //this.mCurrentQuestionIndex = 0;
     }
 
     @Override
@@ -75,44 +79,50 @@ public class QuizActivity extends AppCompatActivity {
         return (TextView) findViewById(resourceId);
     }
 
+    private void endQuiz() {
+        if(this.mQuiz instanceof LinearQuiz) {
+            int totalScore = this.mQuiz.getTotalScore();
+            JSONObject scoreObject = this.mQuiz.computeScore();
+            int playerScore = 0;
+            try {
+                playerScore = scoreObject.getInt("player_score");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Intent intent = new Intent(getApplicationContext(), LinearQuizResultActivity.class);
+            intent.putExtra("total_score", totalScore);
+            intent.putExtra("player_score", playerScore);
+            getApplicationContext().startActivity(intent);
+        }
+        else if(this.mQuiz instanceof PersonalityQuiz) {
+            JSONObject scoreObject = this.mQuiz.computeScore();
+            ArrayList<Integer> playerScore = null;
+            try {
+                playerScore = (ArrayList<Integer>) scoreObject.get("player_score");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            PersonalityQuiz mPersonalityQuiz = (PersonalityQuiz) this.mQuiz;
+            ArrayList<ArrayList<String>> interpretations = mPersonalityQuiz.getInterpretations();
+            System.out.println(interpretations.size());
+            System.out.println(playerScore.size());
+            System.out.println(scoreObject);
+            Intent intent = new Intent(getApplicationContext(), PersonalityQuizResultActivity.class);
+            intent.putExtra("interpretations", interpretations);
+            intent.putExtra("player_score", playerScore);
+            getApplicationContext().startActivity(intent);
+        }
+    }
+
     private void nextQuestion() {
+        JSONObject state = this.mQuiz.getState();
+        StateManager.saveState(getApplicationContext(), this.mQuizId, state);
         if(this.mCurrentQuestionIndex+1 < this.mQuizSize) {
             this.mCurrentQuestionIndex++;
             displayQuestion(this.mCurrentQuestionIndex);
         } else {
-            if(this.mQuiz instanceof LinearQuiz) {
-                int totalScore = this.mQuiz.getTotalScore();
-                JSONObject scoreObject = this.mQuiz.computeScore();
-                int playerScore = 0;
-                try {
-                    playerScore = scoreObject.getInt("player_score");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                Intent intent = new Intent(getApplicationContext(), LinearQuizResultActivity.class);
-                intent.putExtra("total_score", totalScore);
-                intent.putExtra("player_score", playerScore);
-                getApplicationContext().startActivity(intent);
-            }
-            else if(this.mQuiz instanceof PersonalityQuiz) {
-                JSONObject scoreObject = this.mQuiz.computeScore();
-                ArrayList<Integer> playerScore = null;
-                try {
-                    playerScore = (ArrayList<Integer>) scoreObject.get("player_score");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                PersonalityQuiz mPersonalityQuiz = (PersonalityQuiz) this.mQuiz;
-                ArrayList<ArrayList<String>> interpretations = mPersonalityQuiz.getInterpretations();
-                System.out.println(interpretations.size());
-                System.out.println(playerScore.size());
-                System.out.println(scoreObject);
-                Intent intent = new Intent(getApplicationContext(), PersonalityQuizResultActivity.class);
-                intent.putExtra("interpretations", interpretations);
-                intent.putExtra("player_score", playerScore);
-                getApplicationContext().startActivity(intent);
-            }
+            this.endQuiz();
         }
     }
 
@@ -135,8 +145,12 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void displayQuestion(int index) {
-        Question newQuestion = this.mQuiz.getQuestion(index);
-        displayQuestion(newQuestion);
+        if (index < this.mQuizSize) {
+            Question newQuestion = this.mQuiz.getQuestion(index);
+            displayQuestion(newQuestion);
+        } else {
+            endQuiz();
+        }
     }
 
     @Override

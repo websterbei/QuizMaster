@@ -14,4 +14,5 @@ interface Quiz {
     int getTotalScore();
     JSONObject computeScore();
     JSONObject getState();
+    int resume(JSONObject state);
 }

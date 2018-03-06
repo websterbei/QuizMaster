@@ -34,6 +34,7 @@ public class LinearQuestion implements Question {
         }
 
         public int getScore(String myAnswer) {
+            System.out.println(myAnswer);
             return mScoreMap.get(myAnswer);
         }
 
