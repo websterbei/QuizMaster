@@ -13,4 +13,5 @@ interface Quiz {
     void setAnswer(int index, String answer);
     int getTotalScore();
     JSONObject computeScore();
+    JSONObject getState();
 }

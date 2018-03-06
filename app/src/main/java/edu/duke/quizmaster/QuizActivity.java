@@ -138,4 +138,11 @@ public class QuizActivity extends AppCompatActivity {
         Question newQuestion = this.mQuiz.getQuestion(index);
         displayQuestion(newQuestion);
     }
+
+    @Override
+    public void onBackPressed() {
+        JSONObject state = this.mQuiz.getState();
+        StateManager.saveState(getApplicationContext(), this.mQuizId, state);
+        super.onBackPressed();
+    }
 }

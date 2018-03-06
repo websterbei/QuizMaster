@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button startQuizButtonPersonality = findViewById(R.id.startQuizButtonPersonality);
+        System.out.println(StateManager.isComplete(getApplicationContext(), "lq1"));
         startQuizButtonPersonality.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

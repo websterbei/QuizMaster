@@ -15,6 +15,7 @@ public class LinearQuiz implements Quiz {
     private String mTitle;
     private ArrayList<LinearQuestion> mQuestions;
     private ArrayList<String> mAnswers;
+    private int mNumAnswered;
 
     public LinearQuiz(String title, ArrayList<LinearQuestion> questions) {
         this(title, questions, false);
@@ -53,6 +54,7 @@ public class LinearQuiz implements Quiz {
     @Override
     public void setAnswer(int index, String answer) {
         this.mAnswers.set(index, answer);
+        this.mNumAnswered = index + 1;
     }
 
     public JSONObject computeScore() {
@@ -72,5 +74,18 @@ public class LinearQuiz implements Quiz {
     @Override
     public int getTotalScore() {
         return this.mQuestions.size();
+    }
+
+    @Override
+    public JSONObject getState() {
+        JSONObject state = new JSONObject();
+        try {
+            state.put("user_answers", this.mAnswers);
+            state.put("complete", this.mNumAnswered==this.mAnswers.size() ? true : false);
+            return state;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return state;
     }
 }

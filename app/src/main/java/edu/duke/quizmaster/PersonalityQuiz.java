@@ -3,6 +3,7 @@ package edu.duke.quizmaster;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,6 +17,7 @@ public class PersonalityQuiz implements Quiz {
     private ArrayList<PersonalityQuestion> mQuestions;
     private ArrayList<String> mAnswers;
     private ArrayList<ArrayList<String>> mInterpretations;
+    private int mNumAnswered;
 
     public PersonalityQuiz(String title, ArrayList<PersonalityQuestion> questions, ArrayList<ArrayList<String>> interpretations) {
         this(title, questions, interpretations, false);
@@ -55,6 +57,7 @@ public class PersonalityQuiz implements Quiz {
     @Override
     public void setAnswer(int index, String answer) {
         this.mAnswers.set(index, answer);
+        this.mNumAnswered = index + 1;
     }
 
     @Override
@@ -83,5 +86,18 @@ public class PersonalityQuiz implements Quiz {
     @Override
     public int getTotalScore() {
         return this.mQuestions.size();
+    }
+
+    @Override
+    public JSONObject getState() {
+        JSONObject state = new JSONObject();
+        try {
+            state.put("user_answers", this.mAnswers);
+            state.put("complete", this.mNumAnswered==this.mAnswers.size() ? true : false);
+            return state;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return state;
     }
 }
