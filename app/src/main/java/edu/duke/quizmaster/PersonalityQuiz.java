@@ -94,6 +94,7 @@ public class PersonalityQuiz implements Quiz {
         try {
             state.put("user_answers", this.mAnswers);
             state.put("complete", this.mNumAnswered==this.mAnswers.size() ? true : false);
+            state.put("current_index", this.mNumAnswered);
             return state;
         } catch (JSONException e) {
             e.printStackTrace();

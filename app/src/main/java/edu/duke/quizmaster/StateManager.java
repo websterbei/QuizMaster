@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -37,9 +38,15 @@ public class StateManager {
     public static void saveState(Context context, String quizId, JSONObject state) {
         try {
             System.out.println("Saving state file");
-            JSONObject current = loadStateFile(context);
-            current.put(quizId, state);
-            saveStateFile(context, current);
+            try {
+                JSONObject current = loadStateFile(context);
+                current.put(quizId, state);
+                saveStateFile(context, current);
+            } catch (FileNotFoundException e) {
+                JSONObject current = new JSONObject();
+                current.put(quizId, state);
+                saveStateFile(context, current);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
