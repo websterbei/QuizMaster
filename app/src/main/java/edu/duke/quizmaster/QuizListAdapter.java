@@ -1,6 +1,8 @@
 package edu.duke.quizmaster;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -36,10 +38,12 @@ public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.ViewHo
 
     Context mContext;
     String[] mQuizList;
+    boolean[] mIsComplete;
 
-    public QuizListAdapter(final Context context, String[] quizzes) {
+    public QuizListAdapter(final Context context, String[] quizzes, boolean[] isComplete) {
         this.mContext = context;
         this.mQuizList = quizzes;
+        this.mIsComplete = isComplete;
     }
 
     @Override
@@ -89,5 +93,7 @@ public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.ViewHo
             e.printStackTrace();
         }
         holder.mQuizTitle.setText(quizName);
+        if(mIsComplete[position]) holder.mQuizTitle.setTextColor(Color.GREEN);
+        else holder.mQuizTitle.setTextColor(Color.RED);
     }
 }

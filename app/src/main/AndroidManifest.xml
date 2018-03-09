@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".QuizActivity" />
         <activity android:name=".LinearQuizResultActivity" />
-        <activity android:name=".PersonalityQuizResultActivity"></activity>
+        <activity android:name=".PersonalityQuizResultActivity" />
+        <activity android:name=".HistoryActivity"></activity>
     </application>
 
 </manifest>

@@ -10,7 +10,7 @@ import java.util.Map;
 public interface Question {
 
 
-    public String getQuery();
+    String getQuery();
 
-    public Iterable<String> getOptions();
+    Iterable<String> getOptions();
 }

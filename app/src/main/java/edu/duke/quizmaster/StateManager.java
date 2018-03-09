@@ -80,7 +80,7 @@ public class StateManager {
             } else {
                 System.out.println("Quiz state found");
                 JSONObject state = current.getJSONObject(quizId);
-                return state.getBoolean("completed");
+                return state.getBoolean("complete");
             }
         } catch (IOException e) {
             e.printStackTrace();
