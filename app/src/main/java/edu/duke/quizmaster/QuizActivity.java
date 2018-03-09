@@ -92,6 +92,7 @@ public class QuizActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), LinearQuizResultActivity.class);
             intent.putExtra("total_score", totalScore);
             intent.putExtra("player_score", playerScore);
+            intent.putExtra("quiz_id", mQuizId);
             getApplicationContext().startActivity(intent);
         }
         else if(this.mQuiz instanceof PersonalityQuiz) {
@@ -102,7 +103,6 @@ public class QuizActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             PersonalityQuiz mPersonalityQuiz = (PersonalityQuiz) this.mQuiz;
             ArrayList<ArrayList<String>> interpretations = mPersonalityQuiz.getInterpretations();
             System.out.println(interpretations.size());
@@ -111,6 +111,7 @@ public class QuizActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), PersonalityQuizResultActivity.class);
             intent.putExtra("interpretations", interpretations);
             intent.putExtra("player_score", playerScore);
+            intent.putExtra("quiz_id", mQuizId);
             getApplicationContext().startActivity(intent);
         }
     }

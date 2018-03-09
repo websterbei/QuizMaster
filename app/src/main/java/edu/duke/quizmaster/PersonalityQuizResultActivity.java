@@ -43,6 +43,8 @@ public class PersonalityQuizResultActivity extends AppCompatActivity {
 //        C_score.setText(String.format(String.valueOf(playerScore.get(2))));
 //        D_score.setText(String.format(String.valueOf(playerScore.get(3))));
         Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
+        String quizId = getIntent().getExtras().getString("quiz_id");
+        StringBuilder resultString = new StringBuilder();
         A_score.setText("Neutral");
         B_score.setText("Neutral");
         C_score.setText("Neutral");
@@ -50,43 +52,59 @@ public class PersonalityQuizResultActivity extends AppCompatActivity {
         if(playerScore.get(0)<0) {
             A_left.setTypeface(boldTypeface);
             A_left.setTextColor(Color.BLUE);
+            resultString.append(A_left.getText());
         } else if(playerScore.get(0)>0) {
             A_right.setTypeface(boldTypeface);
             A_right.setTextColor(Color.BLUE);
+            resultString.append(A_right.getText());
         } else {
             A_score.setTypeface(boldTypeface);
             A_score.setTextColor(Color.BLUE);
+            resultString.append(A_score.getText());
         }
+        resultString.append(", ");
         if(playerScore.get(1)<0) {
             B_left.setTypeface(boldTypeface);
             B_left.setTextColor(Color.BLUE);
+            resultString.append(B_left.getText());
         } else if(playerScore.get(1)>0) {
             B_right.setTypeface(boldTypeface);
             B_right.setTextColor(Color.BLUE);
+            resultString.append(B_right.getText());
         } else {
             B_score.setTypeface(boldTypeface);
             B_score.setTextColor(Color.BLUE);
+            resultString.append(B_score.getText());
         }
+        resultString.append(", ");
         if(playerScore.get(2)<0) {
             C_left.setTypeface(boldTypeface);
             C_left.setTextColor(Color.BLUE);
+            resultString.append(C_left.getText());
         } else if(playerScore.get(2)>0) {
             C_right.setTypeface(boldTypeface);
             C_right.setTextColor(Color.BLUE);
+            resultString.append(C_right.getText());
         } else {
             C_score.setTypeface(boldTypeface);
             C_score.setTextColor(Color.BLUE);
+            resultString.append(C_score.getText());
         }
+        resultString.append(", ");
         if(playerScore.get(3)<0) {
             D_left.setTypeface(boldTypeface);
             D_left.setTextColor(Color.BLUE);
+            resultString.append(D_left.getText());
         } else if(playerScore.get(3)>0) {
             D_right.setTypeface(boldTypeface);
             D_right.setTextColor(Color.BLUE);
+            resultString.append(D_right.getText());
         } else {
             D_score.setTypeface(boldTypeface);
             D_score.setTextColor(Color.BLUE);
+            resultString.append(D_score.getText());
         }
+        HistoryManager.addToResultHistory(getApplicationContext(), quizId, resultString.toString());
     }
 
     @Override

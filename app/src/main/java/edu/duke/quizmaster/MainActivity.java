@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -19,6 +21,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getApplicationContext().deleteFile("state.json");
+            }
+        });
+
+        Button getHistoryButton = findViewById(R.id.get_history);
+        getHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<String> result = HistoryManager.getResultHistory(getApplicationContext(), "pq1");
+                for(String i : result) System.out.println(i);
             }
         });
 

@@ -14,7 +14,10 @@ public class LinearQuizResultActivity extends AppCompatActivity {
         TextView result = findViewById(R.id.quiz_result_text_view);
         int totalScore = getIntent().getExtras().getInt("total_score");
         int playerScore = getIntent().getExtras().getInt("player_score");
-        result.setText(Integer.toString(playerScore) + "/" + Integer.toString(totalScore));
+        String scoreString = Integer.toString(playerScore) + "/" + Integer.toString(totalScore);
+        result.setText(scoreString);
+        String quizId = getIntent().getExtras().getString("quiz_id");
+        HistoryManager.addToResultHistory(getApplicationContext(), quizId, scoreString);
     }
 
     @Override

@@ -42,11 +42,11 @@ public class HistoryManager {
         fos.close();
     }
 
-    public static void addToResultHistory(Context context, String quizId, JSONObject resultObject) {
+    public static void addToResultHistory(Context context, String quizId, String resultString) {
         try {
             JSONObject historyObject = loadResultHistoryFile(context);
             JSONArray resultArray = historyObject.has(quizId) ? historyObject.getJSONArray(quizId) : new JSONArray();
-            resultArray.put(resultObject);
+            resultArray.put(resultString);
             historyObject.put(quizId, resultArray);
             saveResultHistoryFile(context, historyObject);
         } catch (IOException e) {
