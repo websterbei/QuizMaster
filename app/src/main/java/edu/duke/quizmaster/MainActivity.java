@@ -1,13 +1,9 @@
 package edu.duke.quizmaster;
 
-import android.content.Context;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
-import java.util.ArrayList;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,26 +11,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Button clearStateButton = findViewById(R.id.clear_state);
-        clearStateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getApplicationContext().deleteFile("state.json");
-            }
-        });
-
-        Button getHistoryButton = findViewById(R.id.get_history);
-        getHistoryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ArrayList<String> result = HistoryManager.getResultHistory(getApplicationContext(), "pq1");
-                for(String i : result) System.out.println(i);
-            }
-        });
-
-        Button startQuizButtonPersonality = findViewById(R.id.startQuizButtonPersonality);
-        startQuizButtonPersonality.setOnClickListener(new View.OnClickListener() {
+        //  Button startQuizButtonPersonality = findViewById(R.id.startQuizButtonPersonality);
+        System.out.println(StateManager.isComplete(getApplicationContext(), "lq1"));
+     /*   startQuizButtonPersonality.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openQuiz(view.getContext());
@@ -46,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
                 mContext.startActivity(intent);
             }
         });
-
         Button startQuizButtonLinear = findViewById(R.id.startQuizButtonLinear);
         startQuizButtonLinear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("quizId", "lq1");
                 mContext.startActivity(intent);
             }
-        });
+        }); */
+        String[] quizzes = this.getResources().getStringArray(R.array.quizzes);
+
+        RecyclerView rv = findViewById(R.id.activity_main_recycler_view);
+        rv.setAdapter(new QuizListAdapter(this, quizzes));
+        rv.setLayoutManager(new LinearLayoutManager(this));
+
+
     }
 }

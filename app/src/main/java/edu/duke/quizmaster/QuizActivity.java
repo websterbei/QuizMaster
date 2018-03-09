@@ -19,14 +19,17 @@ public class QuizActivity extends AppCompatActivity {
     private Quiz mQuiz;
     private int mQuizSize;
     private int mCurrentQuestionIndex;
+    private String mQuizTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("Create");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_linear_quiz);
-        this.mQuizId = getIntent().getExtras().getString("quizId");
+        this.mQuizId = getIntent().getExtras().getString("quiz_id");
         this.mQuiz = QuizGenerator.getQuizById(getApplicationContext(), this.mQuizId);
+        this.mQuizTitle = this.mQuiz.getTitle();
         this.mQuizSize = this.mQuiz.getSize();
         JSONObject state = StateManager.getState(getApplicationContext(), this.mQuizId);
         if(state!=null) {

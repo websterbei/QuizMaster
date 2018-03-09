@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">QuizMaster</string>
+    <string-array name="quizzes">
+        <item>lq1</item>
+        <item>lq2</item>
+        <item>pq1</item>
+    </string-array>
+
     <string name="lq1">
         {\"title\": \"First Linear Quiz\", \"type\": \"linear quiz\", \"questions\": [{\"query\": \"How many languages and dialects are spoken by people all over the world?\", \"answers\": [{\"answer\": 6000, \"score\": 0}, {\"answer\": 9000, \"score\": 1}, {\"answer\": 4000, \"score\": 0}, {\"answer\": 1000, \"score\": 0}]}, {\"query\": \"Approximately, how many people speak Chinese language?\", \"answers\": [{\"answer\": \"1 billion\", \"score\": 1}, {\"answer\": \"1 million\", \"score\": 0}, {\"answer\": \"1 lakh\", \"score\": 0}, {\"answer\": \"1 thousand\", \"score\": 0}]}, {\"query\": \"The language with the richest vocabulary is: \", \"answers\": [{\"answer\": \"Hindi\", \"score\": 0}, {\"answer\": \"French\", \"score\": 0}, {\"answer\": \"English\", \"score\": 1}, {\"answer\": \"German\", \"score\": 0}]}, {\"query\": \"The oldest Indian language is:\", \"answers\": [{\"answer\": \"Telugu\", \"score\": 0}, {\"answer\": \"Hindu\", \"score\": 0}, {\"answer\": \"Tamil\", \"score\": 1}, {\"answer\": \"Punjabi\", \"score\": 0}]}, {\"query\": \"Which book has been printed in the maximum number of languages and these scripts? \", \"answers\": [{\"answer\": \"The Bible\", \"score\": 1}, {\"answer\": \"Hiraka Sutra\", \"score\": 0}, {\"answer\": \"The Super Book\", \"score\": 0}, {\"answer\": \"None of the above\", \"score\": 0}]}, {\"query\": \"Who developed the small pox vaccination?\", \"answers\": [{\"answer\": \"Eduard Jenner\", \"score\": 1}, {\"answer\": \"Alexander Fleming\", \"score\": 0}, {\"answer\": \"Albert Einstein\", \"score\": 0}, {\"answer\": \"None of the above\", \"score\": 0}]}]}
     </string>
